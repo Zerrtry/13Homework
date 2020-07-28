@@ -22,20 +22,6 @@ $( document ).ready(function() {
             devoured: 0
         };
         console.log(newBurger);
-        // create a new burger list item
-        const tableList = $("#tableList");
-        const listItem = $("<li class='list-group-item mt-4'>");
-        listItem.append(
-            $("<hr>"),
-            // $("<h3>").text("Member ID: " + tableData[i].user_id),
-            $("<br>"),
-            // $("<h2>").text(tableData[i].reviews),
-            $("<h2>").text(newBurger.burger_name),
-            // $(`<button type="button" id=${tableData[i].review_id} class="btn-lg btn-danger submit delete">Devour</button>`)
-            $(`<button type="button" id="1" class="btn-lg btn-danger submit delete">Devour</button>`)
-        );
-        tableList.append(listItem);
-
         // create a new burger in database with ajax call
         $.post("http://localhost:9000/burger-new", newBurger, () => {
             // if (!data) {
@@ -47,7 +33,19 @@ $( document ).ready(function() {
             $("#burger_name").val("");
         });
 
-        
+        loadAllBurgers();
+        // create a new burger list item
+        // const tableList = $("#tableList");
+        // const listItem = $("<li class='list-group-item mt-4'>");
+        // listItem.append(
+        //     // $("<h3>").text("Member ID: " + tableData[i].user_id),
+        //     $("<br>"),
+        //     // $("<h2>").text(tableData[i].reviews),
+        //     $("<h2>").text(newBurger.burger_name),
+        //     // $(`<button type="button" id=${tableData[i].review_id} class="btn-lg btn-danger submit delete">Devour</button>`)
+        //     $(`<button type="button" id="1" class="btn-lg btn-danger submit delete">Devour</button>`)
+        // );
+        // tableList.append(listItem);   
     });
 
     // $(".delete").click(function(event) {
@@ -66,22 +64,43 @@ $( document ).ready(function() {
         // deleteReview(id);
         console.log("delete");
        
+
+
+
         // const newBurger = {
         //     burger_name: $("#burger-name").val().trim(),
         //     devoured: 0
         // };
         // console.log(newBurger);
-
+        const burger_name= $(this).closest(".burgerName").val();
+        console.log(burger_name)
         const tableList = $("#tableList-2");
         const listItem = $("<li class='list-group-item mt-4'>");
         listItem.append(
-            $("<hr>"),
             // $("<h3>").text("Member ID: " + tableData[i].user_id),
             $("<br>"),
             // $("<h2>").text(tableData[i].reviews),
-            $("<h2>").text("abc"),
+            $("<h2>").text(burger_name),
         );
         tableList.append(listItem);
+        
+        const id= $(this).attr("id");
+        console.log(id);
+        
+        const data = {
+            id: id,
+            devoured: 1
+        }
+
+        $.ajax({url:"http://localhost:9000/updateBurger", method:"PUT", data:data}).then((data) => {
+            if (data) {
+                alert("Yay! Burger has been devoured!");
+            }
+            else {
+                alert("Sorry!");
+            }
+     
+        });
     });
 
     // const deleteReview = (id) => {
@@ -100,10 +119,9 @@ $( document ).ready(function() {
                 const tableList = $("#tableList");
                 const listItem = $("<li class='list-group-item mt-4'>");
                 listItem.append(
-                    $("<hr>"),
                     // $("<h3>").text("Member ID: " + tableData[i].user_id),
                     $("<br>"),
-                    $("<h2>").text(tableData[i].burger_name),
+                    $(`<h2 class="burgerName">`).text(tableData[i].burger_name),
                     $("<br>"),
                     $(`<button type="button" id=${tableData[i].id} class="btn-lg btn-danger submit delete">Devour</button>`)
                 );
