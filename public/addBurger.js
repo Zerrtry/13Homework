@@ -3,7 +3,7 @@ $( document ).ready(function() {
         
     const loadAllBurgers = () => {
         
-        $.ajax({ url: "http://localhost:9000/burger-all", method: "GET"}).then((tableData) => {
+        $.ajax({ url: "https://eat-ea-burger-hm-13.herokuapp.com/burger-all", method: "GET"}).then((tableData) => {
             console.log(tableData);
             for (let i = 0; i < tableData.length; i++) {
                 const tableList = $("#tableList");
@@ -28,7 +28,7 @@ $( document ).ready(function() {
         console.log(newBurger);
 
         // create a new burger in database with ajax call
-        $.post("http://localhost:9000/burger-new", newBurger, () => {
+        $.post("https://eat-ea-burger-hm-13.herokuapp.com/burger-new", newBurger, () => {
             $("#burger_name").val("");
         });
 
@@ -58,7 +58,7 @@ $( document ).ready(function() {
             devoured: 1
         }
 
-        $.ajax({url:"http://localhost:9000/updateBurger", method:"PUT", data:data}).then((data) => {
+        $.ajax({url:"https://eat-ea-burger-hm-13.herokuapp.com/updateBurger", method:"PUT", data:data}).then((data) => {
             if (data) {
                 alert("Yay! Burger has been devoured!");
             }
