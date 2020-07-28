@@ -1,9 +1,10 @@
 $( document ).ready(function() {
     console.log( "ready!" );
-        
+    
+    // populate all burgers into html
     const loadAllBurgers = () => {
         
-        $.ajax({ url: "https://eat-ea-burger-hm-13.herokuapp.com/burger-all", method: "GET"}).then((tableData) => {
+        $.ajax({ url:"https://eat-ea-burger-hm-13.herokuapp.com/burger-all", method: "GET"}).then((tableData) => {
             console.log(tableData);
             for (let i = 0; i < tableData.length; i++) {
                 const tableList = $("#tableList");
@@ -19,6 +20,7 @@ $( document ).ready(function() {
         });
     };
 
+    // create a new burger in database with ajax call
     $(".addBurger").on("click", (event) => {
         event.preventDefault();
         const newBurger = {
@@ -27,14 +29,13 @@ $( document ).ready(function() {
         };
         console.log(newBurger);
 
-        // create a new burger in database with ajax call
-        $.post("https://eat-ea-burger-hm-13.herokuapp.com/burger-new", newBurger, () => {
+        $.ajax({url:"https://eat-ea-burger-hm-13.herokuapp.com/burger-new", method: "POST", data: newBurger}).then (() => {
             $("#burger_name").val("");
+            loadAllBurgers();
         });
-
-        loadAllBurgers();
     });
 
+    // devoure birger
     $(document).on('click','.deleteBurger', () => {
         event.preventDefault();
         const elem1 = $(this).closest('li.list-group-item.mt-4');
