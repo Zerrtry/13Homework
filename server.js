@@ -8,6 +8,7 @@ const PORT = process.env.PORT || 9000
 
 app.use(cors());
 app.use(express.urlencoded({extended: true}));
+app.use(express.static("./public/"));
 app.use(bodyParser.json());
 routes.route(app);
 // ===========================================================
