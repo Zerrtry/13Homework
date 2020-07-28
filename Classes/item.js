@@ -77,10 +77,10 @@ class Item {
     //     this._user = result;
     // }
 
-    // async populateAllReviews(){
-    //     const result = await reviews.getReviewAll();
-    //     this._user = result;
-    // }
+    async populateAllBurgers(){
+        const result = await burgers.getBurgersAll();
+        this._user = result;
+    }
 
     // async populateUserFromId(){
     //     const result = await reviews.getById(this._user);

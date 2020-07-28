@@ -1,9 +1,9 @@
-const review = require('./controllers/controller');
+const burger = require('./controllers/controller');
 
 exports.route = (app) => {
     // app.post("/user", review.create);
-    app.post("/burger-new", review.createBurger);
-//     app.get("/user/:id", review.getUserById);
+    app.post("/burger-new", burger.createBurger);
+    app.get("/burger-all", burger.getAllBurgers);
 //     app.get("/review/:id", review.getReviewById);
 //     app.delete("/user/:id", review.deleteUser);
 //     app.delete("/review/:id", review.deleteReview);

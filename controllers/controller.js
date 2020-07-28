@@ -27,14 +27,14 @@ exports.createBurger = async (request, response) => {
 
     //     if (item == false) {
     //         console.log("if")
-            const user = new Item({
+            const item = new Item({
                 burger_name:request.body.burger_name,
                 devoured:request.body.devoured,
                 // reviews:request.body.reviews,
                 // rating:request.body.rating
                 });
-                await user.insertToBurgerDB();
-                response.json(user.toLiteral());
+                await item.insertToBurgerDB();
+                response.json(item.toLiteral());
         // } else { 
         //     console.log("else")
         //     response.json(false)         
@@ -42,11 +42,11 @@ exports.createBurger = async (request, response) => {
     // }
 }
 
-// exports.getUserById = async (request, response) => {
-//     const user = new User(request.params.id);
-//     await user.populateUserFromId();
-//     response.json(user.toLiteral());
-// }
+exports.getAllBurgers = async (request, response) => {
+    const item = new Item ();
+    await item.populateAllBurgers();
+    response.json(item.toLiteral());
+}
 
 // exports.getReviewById = async (request, response) => {
 //     const user = new User(request.params.id);

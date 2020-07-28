@@ -12,7 +12,7 @@
 $( document ).ready(function() {
     console.log( "ready!" );
 
-    
+
 
 
     $(".submit").on("click", (event) => {
@@ -47,37 +47,7 @@ $( document ).ready(function() {
             $("#burger_name").val("");
         });
 
-        // const runTableQuery = () => {
         
-            // $.ajax({ url: "http://localhost:9000/burger-new", method: "POST", data: newBurger}).then((tableData) => {
-            //     console.log(tableData);
-            //     for (let i = 0; i < tableData.length; i++) {
-            //         const tableList = $("#tableList");
-            //         const listItem = $("<li class='list-group-item mt-4'>");
-            //         listItem.append(
-            //             $("<hr>"),
-            //             $("<h3>").text("Member ID: " + tableData[i].user_id),
-            //             $("<br>"),
-            //             $("<h2>").text(tableData[i].reviews),
-            //             $("<br>"),
-        
-            //             $(`
-            //             <tr class="hotel_a"><td>
-            //     <div class="stars-outer">
-            //       <div class="stars-inner"></div>
-            //     </div>
-            //   </td>
-            // </tr>`),
-            //             $("<h3>").text("Rating: " + tableData[i].rating),
-            //             $("<br>"),
-            //             $(`<a href="update-review.html?review_id=${tableData[i].review_id}&reviews=${tableData[i].reviews}&rating=${tableData[i].rating}&name=${name}&user_id= ${tableData[i].user_id}"><button type="submit" id="update" class="btn-lg btn-success submit"">Update</button>`),
-                       
-            //             $(`<button type="button" id=${tableData[i].review_id} class="btn-lg btn-danger submit delete">Delete</button>`)
-            //         );
-            //         tableList.append(listItem);
-            //     }
-            // });
-
     });
 
     // $(".delete").click(function(event) {
@@ -121,4 +91,25 @@ $( document ).ready(function() {
     //     console.log(tableData);
     // });
     // }
+
+    const loadAllBurgers = () => {
+        
+        $.ajax({ url: "http://localhost:9000/burger-all", method: "GET"}).then((tableData) => {
+            console.log(tableData);
+            for (let i = 0; i < tableData.length; i++) {
+                const tableList = $("#tableList");
+                const listItem = $("<li class='list-group-item mt-4'>");
+                listItem.append(
+                    $("<hr>"),
+                    // $("<h3>").text("Member ID: " + tableData[i].user_id),
+                    $("<br>"),
+                    $("<h2>").text(tableData[i].burger_name),
+                    $("<br>"),
+                    $(`<button type="button" id=${tableData[i].id} class="btn-lg btn-danger submit delete">Devour</button>`)
+                );
+                tableList.append(listItem);
+            }
+        });
+    };
+    loadAllBurgers();
 });

@@ -11,11 +11,11 @@ exports.insertBurger = async (user_obj) => {
 //     const [data] = await connection.query(`SELECT * FROM reviews WHERE book_id = ?`, id);
 //     return data;
 // }
-// exports.getReviewAll = async () => {
-//     const connection = await mysql.connect();
-//     const [data] = await connection.query(`SELECT * FROM reviews`);
-//     return data; 
-// }
+exports.getBurgersAll = async () => {
+    const connection = await mysql.connect();
+    const [data] = await connection.query(`SELECT * FROM burgers`);
+    return data; 
+}
 // exports.insert = async (user_obj) => {
 //     const connection = await mysql.connect();
 //     const [data] = await connection.query(`INSERT INTO user SET ?`, user_obj);
