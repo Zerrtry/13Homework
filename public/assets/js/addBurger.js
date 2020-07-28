@@ -4,7 +4,7 @@ $( document ).ready(function() {
     // populate all burgers into html
     const loadAllBurgers = () => {
         
-        $.ajax({ url:"https://eat-ea-burger-hm-13.herokuapp.com/burger-all", method: "GET"}).then((tableData) => {
+        $.ajax({ url:"https://eat-da-burger-hm-13.herokuapp.com/burger-all", method: "GET"}).then((tableData) => {
             // $.ajax({ url:"http://localhost:9000/burger-all", method: "GET"}).then((tableData) => {
             console.log(tableData);
             for (let i = 0; i < tableData.length; i++) {
@@ -41,7 +41,7 @@ $( document ).ready(function() {
         };
         console.log(newBurger);
 
-        $.ajax({url:"https://eat-ea-burger-hm-13.herokuapp.com/burger-new", method: "POST", data: newBurger}).then (() => {
+        $.ajax({url:"https://eat-da-burger-hm-13.herokuapp.com/burger-new", method: "POST", data: newBurger}).then (() => {
         // $.ajax({url:"http://localhost:9000/burger-new", method: "POST", data: newBurger}).then ((tableData) => {
             $("#burger_name").val("");
             console.log(tableData.insertId);
@@ -81,7 +81,7 @@ $( document ).ready(function() {
             devoured: 1
         }
 
-        $.ajax({url:"https://eat-ea-burger-hm-13.herokuapp.com/updateBurger", method:"PUT", data:data}).then((data) => {
+        $.ajax({url:"https://eat-da-burger-hm-13.herokuapp.com/updateBurger", method:"PUT", data:data}).then((data) => {
             // $.ajax({url:"http://localhost:9000/updateBurger", method:"PUT", data:data}).then((data) => {
             
             if (data) {
