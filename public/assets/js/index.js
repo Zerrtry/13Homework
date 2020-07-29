@@ -41,7 +41,7 @@ $( document ).ready(function() {
         };
         console.log(newBurger);
 
-        $.ajax({url:"https://eat-da-burger-hm-13.herokuapp.com/burger-new", method: "POST", data: newBurger}).then (() => {
+        $.ajax({url:"https://eat-da-burger-hm-13.herokuapp.com/burger-new", method: "POST", data: newBurger}).then ((tableData) => {
         // $.ajax({url:"http://localhost:9000/burger-new", method: "POST", data: newBurger}).then ((tableData) => {
             $("#burger_name").val("");
             console.log(tableData.insertId);
