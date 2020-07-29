@@ -1,3 +1,5 @@
+const path = require("path");
+
 const burger = require('./controllers/controller');
 
 exports.route = (app) => {
@@ -6,6 +8,6 @@ exports.route = (app) => {
     app.put("/updateBurger", burger.updateBurger);
 
     app.get("*", (req,res) => {
-        res.sendFile(path.join(__dirname, "../public/index.html"));
+        res.sendFile(path.join(__dirname, "./public/index.html"));
     });
 }
