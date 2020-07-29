@@ -1,9 +1,10 @@
 require('dotenv').config();
 const express = require("express");
-const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const routes = require('./routes');
+
+const app = express();
 const PORT = process.env.PORT || 8080
 
 app.use(cors());
@@ -12,9 +13,9 @@ app.use(express.static("./public/"));
 app.use(bodyParser.json());
 routes.route(app);
 // ===========================================================
-app.get("/status", function(req, res) {
+app.get("/status", (req, res) => {
   res.send("Welcome to the Burger App!");
 });
-app.listen(PORT, function() {
+app.listen(PORT, () => {
   console.log("App listening on PORT " + PORT);
 });
